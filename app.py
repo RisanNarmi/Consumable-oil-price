@@ -30,17 +30,17 @@ CONTENT_STYLE = {
 
 sidebar = html.Div(
     [
-        html.H2("Price of Consumable Oil", className="display-4"),
+        html.H2("Consumable Oil Data", className="display-4"),
         html.Hr(),
         html.P(
-            "Price of the 8 main consumable oils by year by per metric tonnes", className="lead"
+            "Consumtion & price of the 8 main consumable oils by year by per metric tonnes", className="lead"
         ),
         dbc.Nav(
             [
                 dbc.NavLink("Welcome Page", href="/", active="exact"),
-                dbc.NavLink("Yearly Price", href="/page-1", active="exact"),
-                dbc.NavLink("Percent increase from previous year", href="/page-2", active="exact"),
-                dbc.NavLink("Yearly Price", href="/page-3", active="exact"),
+                dbc.NavLink("Consumption Data", href="/page-1", active="exact"),
+                dbc.NavLink("Price Data", href="/page-2", active="exact"),
+                dbc.NavLink("Unit price", href="/page-3", active="exact"),
                 dbc.NavLink("Analysis", href="/page-4", active="exact"),
             ],
             vertical=True,
