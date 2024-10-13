@@ -92,14 +92,14 @@ dbc.Col(html.Img(src=image_path, className="m-2"))])
                         style={'textAlign':'center'}),
 dbc.Row(html.h3('consumtion in million tonnes'))
 dbc.Row(fig = go.Figure(data=[
-    go.Bar(name='Coconut Oil', x=year, y=[20, 14, 23]),
-    go.Bar(name='Olive Oil', x=year, y=[20, 14, 23]),
-    go.Bar(name='Palm Kernel Oil', x=year, y=[20, 14, 23]),
-    go.Bar(name='Palm Oil', x=year, y=[20, 14, 23]),
-    go.Bar(name='Peanut Oil', x=year, y=[20, 14, 23]),
-    go.Bar(name='Papeseed Oil', x=year, y=[20, 14, 23]),
-    go.Bar(name='Soybean Oil', x=year, y=[20, 14, 23]),
-    go.Bar(name='Sunflower Oil', x=year, y=[12, 18, 29])
+    go.Bar(name='Coconut Oil', x=year, y=df["Coconut Oil Consumption(mil tonnes)"]),
+    go.Bar(name='Olive Oil', x=year, y=df["Olive Oil Consumption(mil tonnes)"]),
+    go.Bar(name='Palm Kernel Oil', x=year, y=df["Palm Kernel Oil Consumption(mil tonnes)"]),
+    go.Bar(name='Palm Oil', x=year, y=df["Palm Oil Consumption(mil tonnes)"]),
+    go.Bar(name='Peanut Oil', x=year, y=df["Peanut Oil Consumption(mil tonnes)"]),
+    go.Bar(name='Papeseed Oil', x=year, y=df["Rapeseed Oil Consumption(mil tonnes)"]),
+    go.Bar(name='Soybean Oil', x=year, y=df["Soybean Oil Consumption(mil tonnes)"]),
+    go.Bar(name='Sunflower Oil', x=year, y=df["Sunflower Oil Consumption(mil tonnes)"])
 ]))
                 ]
     elif pathname == "/page-2":
