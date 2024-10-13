@@ -85,15 +85,9 @@ dbc.Col(html.Img(src=image_path, className="m-2"))])
                 ]
     elif pathname == "/page-2":
         return [
-                html.H1('Yearly GDP',
+                html.H1('Price per metric tonne',
                         style={'textAlign':'center'}),
-dbc.Row(dbc.Col(dcc.Checklist(
-                    id="checklist-type",
-                    options=["Coconut Oil Price", "Olive Oil Price", "Palm Kernel Oil Price", "Palm Oil Price", "Peanut Oil Price", "Rapeseed Oil Price", "Soybean Oil Price", "Sunflower Oil Price",],
-                    value=["Palm Oil Price"],
-                    inline=True
-                ))), 
-dbc.Row(dcc.Graph(id="line-graph"))
+dbc.Row(px.scatter(df, x="Month", y="Coconut Oil Price"))
                 ]
     # If the user tries to reach a different page, return a 404 message
     return dbc.Container(
@@ -106,18 +100,6 @@ dbc.Row(dcc.Graph(id="line-graph"))
 
 
 #graph framework----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-@app.callback(
-    Output("line-graph", "figure"), 
-    Input("checklist-type", "value"))
-
-def update_graph2(type):
-    fig2 = make_subplots(specs=[[{"secondary_y": True}]])
-    for type in type:
-        PricePerType = df["checklist-type"]
-        trace = go.Scatter(x=df["Month"], y=PricePerType, name=checklist-type)
-        fig.add_trace(trace)
-    return fig;
-
 
 #error test---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
