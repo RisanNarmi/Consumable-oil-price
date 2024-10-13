@@ -80,27 +80,26 @@ app.layout = html.Div([
 def render_page_content(pathname):
     if pathname == "/":
         return [
-                html.H1('Home Page',
+                html.H1('Landing Page',
                         style={'textAlign':'center'}),
                 dbc.Row([
-dbc.Col(html.H1('MCM7183 Exercise 3', className="p-2 bg-light border text-center"))])
+dbc.Col(html.H1('This is a data visualization assignment for MCM7183 class', className="p-2 bg-light border text-center"))])
                 ]
     elif pathname == "/page-1":
         return [
-                html.H1('Edible Oil Global Consumtion',
+                html.H1('Consumtion by year',
                         style={'textAlign':'center'}),
-dbc.Row(html.h1('consumtion in million tonnes')),
-dbc.Row(fig = go.Figure(data=[
-    go.Bar(name='Coconut Oil', x=year, y=df["Coconut Oil Consumption(mil tonnes)"]),
-    go.Bar(name='Olive Oil', x=year, y=df["Olive Oil Consumption(mil tonnes)"]),
-    go.Bar(name='Palm Kernel Oil', x=year, y=df["Palm Kernel Oil Consumption(mil tonnes)"]),
-    go.Bar(name='Palm Oil', x=year, y=df["Palm Oil Consumption(mil tonnes)"]),
-    go.Bar(name='Peanut Oil', x=year, y=df["Peanut Oil Consumption(mil tonnes)"]),
-    go.Bar(name='Papeseed Oil', x=year, y=df["Rapeseed Oil Consumption(mil tonnes)"]),
-    go.Bar(name='Soybean Oil', x=year, y=df["Soybean Oil Consumption(mil tonnes)"]),
-    go.Bar(name='Sunflower Oil', x=year, y=df["Sunflower Oil Consumption(mil tonnes)"])
-]))
+dbc.Row(dbc.Col(dcc.Slider(2013, 2021, value=2020, id='slider-year',
+                         marks = {i: str(i) for i in range(2013, 2022, 1)}, className="mt-5"), width={"size": 10, "offset": 1})), 
+dbc.Row(dcc.Graph(id="graph-pie"))
                 ]
+    # If the user tries to reach a different page, return a 404 message
+    return dbc.Container(
+        [
+            html.H1("404: Not found", className="text-danger"),
+            html.Hr(),
+            html.P(f"The pathname {pathname} was not recognised..."),
+        ]
     elif pathname == "/page-2":
         return [
                 html.H1('Yearly GDP',
