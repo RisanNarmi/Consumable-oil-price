@@ -93,13 +93,6 @@ dbc.Row(dbc.Col(dcc.Slider(2013, 2021, value=2020, id='slider-year',
                          marks = {i: str(i) for i in range(2013, 2022, 1)}, className="mt-5"), width={"size": 10, "offset": 1})), 
 dbc.Row(dcc.Graph(id="graph-pie"))
                 ]
-    # If the user tries to reach a different page, return a 404 message
-    return dbc.Container(
-        [
-            html.H1("404: Not found", className="text-danger"),
-            html.Hr(),
-            html.P(f"The pathname {pathname} was not recognised..."),
-        ]
     elif pathname == "/page-2":
         return [
                 html.H1('Yearly GDP',
