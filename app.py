@@ -90,7 +90,7 @@ dbc.Col(html.Img(src=image_path, className="m-2"))])
         return [
                 html.H1('Edible Oil Global Consumtion',
                         style={'textAlign':'center'}),
-dbc.Row(html.h3('consumtion in million tonnes'))
+dbc.Row(html.h3('consumtion in million tonnes')),
 dbc.Row(fig = go.Figure(data=[
     go.Bar(name='Coconut Oil', x=year, y=df["Coconut Oil Consumption(mil tonnes)"]),
     go.Bar(name='Olive Oil', x=year, y=df["Olive Oil Consumption(mil tonnes)"]),
