@@ -115,7 +115,7 @@ def update_graph2(type):
     for type in type:
         trace = go.Scatter(x=df["Month"], y=df.checklist, name=type)
         fig.add_trace(trace)
-    return fig;
+    return fig2;
 
 
 #error test---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
