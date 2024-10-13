@@ -13,6 +13,17 @@ server = app.server
 #read processes-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 df = pd.read_csv("https://raw.githubusercontent.com/RisanNarmi/Consumable-oil-price/refs/heads/main/Assets/8%20Edible%20Oils.csv")
 
+year = ['2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
+Sub2013 = df[df["Year"].isin([2013])]
+Sub2014 = df[df["Year"].isin([2014])]
+Sub2015 = df[df["Year"].isin([2015])]
+Sub2016 = df[df["Year"].isin([2016])]
+Sub2017 = df[df["Year"].isin([2017])]
+Sub2018 = df[df["Year"].isin([2018])]
+Sub2019 = df[df["Year"].isin([2019])]
+Sub2020 = df[df["Year"].isin([2020])]
+Sub2021 = df[df["Year"].isin([2021])]
+
 #style set------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 SIDEBAR_STYLE = {
     "position": "fixed",
@@ -77,11 +88,19 @@ dbc.Col(html.Img(src=image_path, className="m-2"))])
                 ]
     elif pathname == "/page-1":
         return [
-                html.H1('Home Page',
+                html.H1('Edible Oil Global Consumtion',
                         style={'textAlign':'center'}),
-                dbc.Row([
-dbc.Col(html.H1('MCM7183 Exercise 3', className="p-2 bg-light border text-center"),  width=10), 
-dbc.Col(html.Img(src=image_path, className="m-2"))])
+dbc.Row(html.h3('consumtion in million tonnes'))
+dbc.Row(fig = go.Figure(data=[
+    go.Bar(name='Coconut Oil', x=year, y=[20, 14, 23]),
+    go.Bar(name='Olive Oil', x=year, y=[20, 14, 23]),
+    go.Bar(name='Palm Kernel Oil', x=year, y=[20, 14, 23]),
+    go.Bar(name='Palm Oil', x=year, y=[20, 14, 23]),
+    go.Bar(name='Peanut Oil', x=year, y=[20, 14, 23]),
+    go.Bar(name='Papeseed Oil', x=year, y=[20, 14, 23]),
+    go.Bar(name='Soybean Oil', x=year, y=[20, 14, 23]),
+    go.Bar(name='Sunflower Oil', x=year, y=[12, 18, 29])
+]))
                 ]
     elif pathname == "/page-2":
         return [
