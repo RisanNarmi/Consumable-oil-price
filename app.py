@@ -90,7 +90,7 @@ dbc.Row(dbc.Col(dcc.Checklist(
                     options=["Coconut Oil Price", "Olive Oil Price", "Palm Kernel Oil Price", "Palm Oil Price", "Peanut Oil Price", "Rapeseed Oil Price", "Soybean Oil Price", "Sunflower Oil Price",],
                     value=["Palm Oil Price"],
                     inline=True
-                )), 
+                ))), 
 dbc.Row(dcc.Graph(id="line-graph"))
                 ]
     # If the user tries to reach a different page, return a 404 message
