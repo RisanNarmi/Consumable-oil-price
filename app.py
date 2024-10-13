@@ -89,7 +89,7 @@ dbc.Col(html.H1('This is a data visualization assignment for MCM7183 class', cla
         return [
                 html.H1('Consumtion by year',
                         style={'textAlign':'center'}),
-dbc.Row(dbc.Col(dcc.Slider(2013, 2021, value=2020, id='slider-year',
+dbc.Row(dbc.Col(dcc.Slider(2013, 2021, 1, value=2020, id='slider-year',
                          marks = {i: str(i) for i in range(2013, 2022, 1)}, className="mt-5"), width={"size": 10, "offset": 1})), 
 dbc.Row(dcc.Graph(id="graph-pie"))
                 ]
@@ -116,6 +116,27 @@ dbc.Row(dcc.Graph(id="line-graph"))
 
 
 #graph framework----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+@app.callback(
+    Output('graph-pie', 'figure'),
+    Input('slider-year', 'value')
+)
+def update_graph2(year_selected):
+    subYear = df[df['Year'].isin([year_selected])]
+    subYear_Coco = subYear['Coconut Oil Consumption(mil tonnes)']
+    subYear_Oli = subYear['Olive Oil Consumption(mil tonnes)']
+    subYear_PalmK = subYear['Palm Kernel Oil Consumption(mil tonnes)']
+    subYear_Palm = subYear['Palm Oil Consumption(mil tonnes)']
+    subYear_Nut = subYear['Peanut Oil Consumption(mil tonnes)']
+    subYear_Rapeseed = subYear['Rapeseed Oil Consumption(mil tonnes)']
+    subYear_Soy = subYear['Soybean Oil Consumption(mil tonnes)']
+    subYear_sun = subYear['Sunflower Oil Consumption(mil tonnes)']
+    pie_data = [subYear_Coco,subYear_Oli,subYear_PalmK,subYear_Palm,subYear_Nut,subYear_Rapeseed,subYear_Soy,subYear_sun];
+    mylabels = ["Coconut Oil", "Olive Oil", "Palm Kernel Oil", "Palm Oil", "Peanut Oil", "Rapeseed Oil", "Soybean Oil", "Sunflower Seed Oil"]
+    pie_df = {'Oil Type': mylabels, 'Consumption(Mil. tonnes)': pie_data}
+    fig2 = px.pie(pie_df,values="Consumption(Mil. tonnes)",names="Oil Type")
+    fig2.update_traces(sort=False) 
+    return fig2;
+
 @app.callback(
     Output("line-graph", "figure"), 
     Input("checklist", "value"))
