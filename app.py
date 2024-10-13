@@ -72,32 +72,28 @@ def render_page_content(pathname):
                 html.H1('Home Page',
                         style={'textAlign':'center'}),
                 dbc.Row([
-dbc.Col(html.H1('MCM7183 Exercise 3', className="p-2 bg-light border text-center"))
+dbc.Col(html.H1('MCM7183 Exercise 3', className="p-2 bg-light border text-center"),  width=10), 
+dbc.Col(html.Img(src=image_path, className="m-2"))])
                 ]
     elif pathname == "/page-1":
         return [
                 html.H1('Home Page',
                         style={'textAlign':'center'}),
                 dbc.Row([
-dbc.Col(html.H1('MCM7183 Exercise 3', className="p-2 bg-light border text-center"))
+dbc.Col(html.H1('MCM7183 Exercise 3', className="p-2 bg-light border text-center"),  width=10), 
+dbc.Col(html.Img(src=image_path, className="m-2"))])
                 ]
     elif pathname == "/page-2":
         return [
-                html.H1('Price per metric tonne',
+                html.H1('Yearly GDP',
                         style={'textAlign':'center'}),
-dbc.Row(px.scatter(df, x="Month", y="Coconut Oil Price"))
-                ]
-    elif pathname == "/page-3":
-        return [
-                html.H1('Price per metric tonne',
-                        style={'textAlign':'center'}),
-dbc.Col(html.H1('MCM7183 Exercise 3', className="p-2 bg-light border text-center"))
-                ]
-    elif pathname == "/page-4":
-        return [
-                html.H1('Price per metric tonne',
-                        style={'textAlign':'center'}),
-dbc.Col(html.H1('MCM7183 Exercise 3', className="p-2 bg-light border text-center"))
+dbc.Row(dbc.Col(dcc.Checklist(
+                    id="checklist",
+                    options=["Coconut Oil Price", "Olive Oil Price", "Palm Kernel Oil Price", "Palm Oil Price", "Peanut Oil Price", "Rapeseed Oil Price", "Soybean Oil Price", "Sunflower Oil Price",],
+                    value=["Palm Oil Price"],
+                    inline=True
+                ))), 
+dbc.Row(dcc.Graph(id="line-graph"))
                 ]
     # If the user tries to reach a different page, return a 404 message
     return dbc.Container(
@@ -110,6 +106,17 @@ dbc.Col(html.H1('MCM7183 Exercise 3', className="p-2 bg-light border text-center
 
 
 #graph framework----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+@app.callback(
+    Output("line-graph", "figure"), 
+    Input("checklist", "value"))
+
+def update_graph2(type):
+    fig2 = make_subplots(specs=[[{"secondary_y": True}]])
+    for type in type:
+        trace = go.Scatter(x=df["Month"], y=df[checklist], name=checklist)
+        fig.add_trace(trace)
+    return fig2;
+
 
 #error test---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
