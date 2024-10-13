@@ -30,10 +30,10 @@ CONTENT_STYLE = {
 
 sidebar = html.Div(
     [
-        html.H2("Consumable Oil Data", className="display-4"),
+        html.H2("Edible Oil Data", className="display-4"),
         html.Hr(),
         html.P(
-            "Consumtion & price of the 8 main consumable oils by year by per metric tonnes", className="lead"
+            "Consumtion & price of the 8 main consumable oils by year", className="lead"
         ),
         dbc.Nav(
             [
@@ -111,7 +111,7 @@ dbc.Row(dcc.Graph(id="line-graph"))
 def update_graph2(type):
     fig2 = make_subplots(specs=[[{"secondary_y": True}]])
     for type in type:
-        PricePerType = df[checklist-type]
+        PricePerType = df["checklist-type"]
         trace = go.Scatter(x=df["Month"], y=PricePerType, name=checklist-type)
         fig.add_trace(trace)
     return fig;
