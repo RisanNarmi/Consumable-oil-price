@@ -77,18 +77,23 @@ dbc.Col(html.Img(src=image_path, className="m-2"))])
                 ]
     elif pathname == "/page-1":
         return [
-                html.H1('Yearly GDP',
+                html.H1('Home Page',
                         style={'textAlign':'center'}),
-dbc.Row(dbc.Col(dcc.Dropdown(subset_2020['country'], ['Malaysia'], id='dropdown-country', multi=True, className="mt-5"), width={"size": 4, "offset": 4})), 
-dbc.Row(dcc.Graph(id="graph-scatter"))
+                dbc.Row([
+dbc.Col(html.H1('MCM7183 Exercise 3', className="p-2 bg-light border text-center"),  width=10), 
+dbc.Col(html.Img(src=image_path, className="m-2"))])
                 ]
     elif pathname == "/page-2":
         return [
-                html.H1('GDP by Continent',
+                html.H1('Yearly GDP',
                         style={'textAlign':'center'}),
-dbc.Row(dbc.Col(dcc.Slider(1960, 2020, 5, value=2020, id='slider-year',
-                         marks = {i: str(i) for i in range(1960, 2021, 5)}, className="mt-5"), width={"size": 10, "offset": 1})), 
-dbc.Row(dcc.Graph(id="graph-pie"))
+dbc.Row(dbc.Col(dcc.Checklist(
+                    id="checklist",
+                    options=["Coconut Oil Price", "Olive Oil Price", "Palm Kernel Oil Price", "Palm Oil Price", "Peanut Oil Price", "Rapeseed Oil Price", "Soybean Oil Price", "Sunflower Oil Price",],
+                    value=["Palm Oil Price"],
+                    inline=True
+                ))), 
+dbc.Row(dcc.Graph(id="line-graph"))
                 ]
     # If the user tries to reach a different page, return a 404 message
     return dbc.Container(
@@ -101,6 +106,16 @@ dbc.Row(dcc.Graph(id="graph-pie"))
 
 
 #graph framework----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+@app.callback(
+    Output("line-graph", "figure"), 
+    Input("checklist", "value"))
+
+def update_graph2(type):
+    fig2 = make_subplots(specs=[[{"secondary_y": True}]])
+    for type in type:
+        trace = go.Scatter(x=df["Month"], y=df.checklist, name=checklist-type)
+        fig.add_trace(trace)
+    return fig;
 
 
 #error test---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
