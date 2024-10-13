@@ -113,7 +113,7 @@ dbc.Row(dcc.Graph(id="line-graph"))
 def update_graph2(type):
     fig2 = make_subplots(specs=[[{"secondary_y": True}]])
     for type in type:
-        trace = go.Scatter(x=df["Month"], y=df.checklist, name=checklist-type)
+        trace = go.Scatter(x=df["Month"], y=df.checklist, name=type)
         fig.add_trace(trace)
     return fig;
 
