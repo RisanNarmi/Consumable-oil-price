@@ -83,14 +83,13 @@ def render_page_content(pathname):
                 html.H1('Home Page',
                         style={'textAlign':'center'}),
                 dbc.Row([
-dbc.Col(html.H1('MCM7183 Exercise 3', className="p-2 bg-light border text-center"),  width=10), 
-dbc.Col(html.Img(src=image_path, className="m-2"))])
+dbc.Col(html.H1('MCM7183 Exercise 3', className="p-2 bg-light border text-center"))])
                 ]
     elif pathname == "/page-1":
         return [
                 html.H1('Edible Oil Global Consumtion',
                         style={'textAlign':'center'}),
-dbc.Row(html.h3('consumtion in million tonnes')),
+dbc.Row(html.h1('consumtion in million tonnes')),
 dbc.Row(fig = go.Figure(data=[
     go.Bar(name='Coconut Oil', x=year, y=df["Coconut Oil Consumption(mil tonnes)"]),
     go.Bar(name='Olive Oil', x=year, y=df["Olive Oil Consumption(mil tonnes)"]),
